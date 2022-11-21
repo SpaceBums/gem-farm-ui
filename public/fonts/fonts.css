@@ -2,3 +2,9 @@
   font-family: "PressStart2P-Regular";
   src: url("/fonts/PressStart2P-Regular.ttf") format("truetype");
 }
+
+body {
+  background-image: url("/banner.jpeg");
+  background-repeat: repeat;
+  background-size:  25em, 25em, auto, cover;
+}

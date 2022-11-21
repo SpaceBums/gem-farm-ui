@@ -28,10 +28,13 @@ const Wallet: FC = ({ children }: { children: React.ReactChild }) => {
   const network = process.env
     .NEXT_PUBLIC_CONNECTION_NETWORK as WalletAdapterNetwork
 
+    /*
   const endpoint =
     process.env.NEXT_PUBLIC_CONNECTION_NETWORK == "devnet"
       ? process.env.NEXT_PUBLIC_SOLANA_RPC_HOST_DEVNET
       : process.env.NEXT_PUBLIC_SOLANA_RPC_HOST_MAINNET_BETA
+      */
+  const endpoint = "https://thrumming-small-snowflake.solana-mainnet.quiknode.pro/2821c659fb0161f1d8ea7aae85df6ec640eaf044/"
 
   // @solana/wallet-adapter-wallets includes all the adapters but supports tree shaking and lazy loading --
   // Only the wallets you configure here will be compiled into your application, and only the dependencies
@@ -48,6 +51,8 @@ const Wallet: FC = ({ children }: { children: React.ReactChild }) => {
     ],
     [network]
   )
+
+  console.log(`Selected endpoint ${endpoint}`);
 
   return (
     <ConnectionProvider

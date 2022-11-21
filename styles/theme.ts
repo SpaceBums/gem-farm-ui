@@ -276,7 +276,7 @@ const theme: Theme = {
     spinnerSmall: {
       size: "1.2rem!important",
     },
-  },
+  }
 }
 
 export default theme

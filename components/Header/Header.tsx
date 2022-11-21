@@ -49,8 +49,15 @@ const Header = ({ farmId, setFarmId }: Props) => {
                 />
 
                 <Text as="h1" variant="headingSpecial" ml=".4rem">
-                  FARM
+                  FARM+ 
                 </Text>
+                <img
+                  sx={{
+                    maxHeight: '4.8rem',
+                  }}
+                  src="/sb-round.png"
+                  alt="Space Bums"
+                />
               </Flex>
               {/* <Text
                 sx={{
@@ -69,7 +76,7 @@ const Header = ({ farmId, setFarmId }: Props) => {
             }}
           >
             &nbsp;&nbsp;&nbsp;&#8226;&nbsp;
-            {process.env.NEXT_PUBLIC_CONNECTION_NETWORK}
+            {"mainnet-beta"}
           </Text>
 
           <Flex
@@ -127,7 +134,7 @@ const Header = ({ farmId, setFarmId }: Props) => {
             >
               <CloseIcon />
             </Button>
-            {isChangingFarmId && (
+            {false && isChangingFarmId && (
               <Input
                 sx={{
                   fontSize: "1.1rem",
@@ -142,7 +149,7 @@ const Header = ({ farmId, setFarmId }: Props) => {
               />
             )}
 
-            <a
+            {false && <a
               tabIndex={0}
               sx={{
                 margin: "0 auto",
@@ -152,7 +159,7 @@ const Header = ({ farmId, setFarmId }: Props) => {
               onClick={() => setIsChangingFarmId((prev) => !prev)}
             >
               (Change Farm ID)
-            </a>
+            </a>}
 
             <WalletManager />
           </Flex>

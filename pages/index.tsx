@@ -12,7 +12,8 @@ import { LoadingIcon } from "@/components/icons/LoadingIcon"
 import { useState } from "react"
 
 const StakePage = () => {
-  const [farmId, setFarmId] = useState(process.env.NEXT_PUBLIC_GEMFARM_ID || "")
+  //const [farmId, setFarmId] = useState(process.env.NEXT_PUBLIC_GEMFARM_ID || "")
+  const [farmId, setFarmId] = useState("HqL1AQyJkWzDuopy9TV2rmqjZ3yxPgQBKDyncCfiaujz");
 
   const {
     walletNFTs,
@@ -50,7 +51,7 @@ const StakePage = () => {
           padding: "0 1.6rem",
         }}
       >
-        <Heading>Your staking account</Heading>
+        <Heading>Your <img src="/sb-logo.png" style={{height: 70, display: 'inline-block', verticalAlign: 'middle'}} /> account</Heading>
         <Text>Below you can stake, unstake and collect rewards.</Text>
 
         {!publicKey ? (
