@@ -36,27 +36,33 @@ const useGemFarmStaking = (farmId: string) => {
       try {
         if (!farmId) throw "No farm ID has been configured."
 
+        console.log(`About to fetch farmer account`)
         setFeedbackStatus("Fetching farmer account...")
         const [farmerPDA] = await findFarmerPDA(
           new PublicKey(farmId!),
           wallet?.publicKey
         )
 
+        console.log(`got farmer PDA of ${farmerPDA.toBase58()}. Getting farmer account`);
         const farmerAcc = await farmClient.fetchFarmerAcc(farmerPDA)
         setFarmerAccount(farmerAcc)
 
+        console.log(`Got farmer account. Getting vault account ${farmerAcc.vault}`);
         const vaultAcc = await bankClient.fetchVaultAcc(farmerAcc.vault)
         setFarmerVaultAccount(vaultAcc)
 
+        console.log(`Got vault. Getting farmerState`);
         const farmerState = farmClient.parseFarmerState(farmerAcc)
-        setFarmerStatus(farmerState)
+        setFarmerStatus(farmerState);
 
+        console.log(`Finished all`);
         setFeedbackStatus("")
       } catch (e) {
         /**
          * Couldn't fetch farmer; so set it as an empty object
          * For the user to init their farmer account
          */
+        console.log("ran into error");
         console.error(e)
         setFarmerAccount({})
       }
@@ -72,17 +78,24 @@ const useGemFarmStaking = (farmId: string) => {
         try {
           if (!farmId) throw "No farm ID has been configured."
 
-          console.log("[Staking Hook] Initializing clients...")
-          const bankClient = await initGemBank(connection, wallet)
+          console.log("[Staking Hook] Initializing clients...");
+          console.log("Using forked gem farm ts lib");
+          const bankClient = await initGemBank(connection, wallet);
+          console.log(`Got gem bank client`);
           setGemBankClient(bankClient)
 
-          const farmClient = await initGemFarm(connection, wallet)
+          const farmClient = await initGemFarm(connection, wallet);
+          console.log(`Got farm client`);
           setGemFarmClient(farmClient)
 
+          console.log("Now fetching farm account");
           const farmAcc = await farmClient.fetchFarmAcc(new PublicKey(farmId))
+          console.log(`Got farm account`)
           setFarmAccount(farmAcc as any)
 
+          console.log("About to fetch farmer account")
           await fetchFarmerAccount(farmClient, bankClient)
+          console.log("Finished the useEffect hook in useGemFarmStaking")
         } catch (e) {
           setFarmAccount(null)
           setFarmerAccount(null)

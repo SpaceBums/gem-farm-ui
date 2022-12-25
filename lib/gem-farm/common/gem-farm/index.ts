@@ -11,7 +11,7 @@ import {
   findWhitelistProofPDA,
   GEM_FARM_PROG_ID,
   GEM_BANK_PROG_ID
-} from "@gemworks/gem-farm-ts"
+} from "@gemworks/gem-farm-ts";
 import { programs } from "@metaplex/js"
 import { IDL as GemBankIDL } from "@gemworks/gem-farm-ts/dist/types/gem_bank"
 import { IDL as GemFarmIDL} from "@gemworks/gem-farm-ts/dist/types/gem_farm"
@@ -20,6 +20,7 @@ export async function initGemFarm(
   conn: Connection,
   wallet?: SignerWalletAdapter
 ) {
+  console.log("Initializing gem farm")
   const walletToUse = wallet ?? createFakeWallet()
   return new GemFarm(conn, walletToUse as any, GemFarmIDL, GemBankIDL)
 }
